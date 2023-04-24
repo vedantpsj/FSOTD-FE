@@ -1,40 +1,45 @@
+import InputField from "./inputField"
+import closeIcon from '../assets/images/close.svg';
+import Image from 'next/image'
 
 export default function UserForm() {
-  return (
-    <form>
-        <div className="grid gap-6 mb-6 md:grid-cols-2">
-            <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required/>
-            </div>
-            <div>
-                <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                <input type="text" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Username" required/>
+    return (
+        <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            <div className="fixed inset-0 z-10 overflow-y-auto">
+                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg w-[100%]">
+                        <div className="bg-slate-200 text-black px-6 py-3 flex justify-between">
+                            <span>Update Details</span>
+
+                            <span className="cursor-pointer">
+                                <Image src={closeIcon} alt='Close'/>
+                            </span>
+                        </div>
+                        <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">   
+                            <form>
+                                <div className="grid gap-4 mb-4 md:grid-cols-2">
+                                    <InputField placeholder="Email" type="email" required={true}/>
+                                    <InputField placeholder="Username" required={true}/>
+                                </div>
+
+                                <div className="grid gap-4 mb-6 md:grid-cols-3">
+                                    <InputField placeholder="Street"/>
+                                    <InputField placeholder="Postal Code"/>
+                                    <InputField placeholder="Country Code"/>
+                                </div>
+                                <div className="text-right">
+                                    <button type="submit" className="text-white bg-slate-600 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <h2 className="text-gray-950 mb-[20px]">Address</h2>
-        <div className="grid gap-6 mb-6 md:grid-cols-2"> 
-            <div>
-                <label htmlFor="Street" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Street</label>
-                <input type="text" id="Street" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Street" required/>
-            </div>
-            <div>
-                <label htmlFor="City" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
-                <input type="text" id="City" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="City" required/>
-            </div>
-            <div>
-                <label htmlFor="PostalCode" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PostalCode</label>
-                <input type="text" id="PostalCode" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="PostalCode" required/>
-            </div>
-
-            <div>
-                <label htmlFor="CountryCode" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CountryCode</label>
-                <input type="text" id="CountryCode" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="CountryCode" required/>
-            </div>
-        </div>
-    
-        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-    </form>
-  );
+    );
 }
+function useState(arg0: boolean): [any, any] {
+    throw new Error("Function not implemented.");
+}
+
