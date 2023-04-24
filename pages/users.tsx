@@ -7,11 +7,12 @@ import Loader from "./loader";
 import Image from "next/image";
 import deleteIcon from "../assets/images/delete.svg";
 import editIcon from "../assets/images/edit.svg";
+import { USERS } from "@/constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const Users = () => {
-  let [users, setUsers] = useState([]);
+  let [users, setUsers]: any = useState([]);
   let [loading, setLoading] = useState(true);
   const [openUserModal, toggleUserModal] = useState(false);
 
@@ -31,6 +32,7 @@ const Users = () => {
       setLoading(false);
     } catch (e) {
       console.error(e);
+      setUsers(USERS);
       setLoading(false);
     }
   };
@@ -79,7 +81,6 @@ const Users = () => {
       setLoading(false);
     }
   };
-
   const renderUsersTable = () => {
     return (
       <>
@@ -108,34 +109,42 @@ const Users = () => {
               </tr>
             </thead>
             <tbody>
-              {new Array(6).fill(0).map((val, index) => (
-                <tr>
-                  <td className="border px-4 py-2">test@email.com</td>
-                  <td className="border px-4 py-2">Testww3</td>
+              {users.map((val: USER, index: number) => (
+                <tr key={index}>
+                  <td className="border px-4 py-2">{val?.email}</td>
+                  <td className="border px-4 py-2">{val?.username}</td>
                   <td className="border px-4 py-2 w-[400px] text-[90%]">
                     <div className="flex">
                       <span className="text-black w-[125px] pr-[10px]">
                         Street:
                       </span>
-                      <span className="w-[calc(100%-125px)]">121</span>
+                      <span className="w-[calc(100%-125px)]">
+                        {val?.address?.street}
+                      </span>
                     </div>
                     <div className="flex">
                       <span className="text-black w-[125px] pr-[10px]">
                         City:
                       </span>
-                      <span className="w-[calc(100%-125px)]">City Name</span>
+                      <span className="w-[calc(100%-125px)]">
+                        {val?.address?.city}
+                      </span>
                     </div>
                     <div className="flex">
                       <span className="text-black w-[125px] pr-[10px]">
                         Postal Code:
                       </span>
-                      <span className="w-[calc(100%-125px)]">122322</span>
+                      <span className="w-[calc(100%-125px)]">
+                        {val?.address?.postalCode}
+                      </span>
                     </div>
                     <div className="flex">
                       <span className="text-black w-[125px] pr-[10px]">
                         Country Code:
                       </span>
-                      <span className="w-[calc(100%-125px)]">+893</span>
+                      <span className="w-[calc(100%-125px)]">
+                        {val?.address?.countryCode}
+                      </span>
                     </div>
                   </td>
                   <td className="border px-4 py-2 w-[100px]">
