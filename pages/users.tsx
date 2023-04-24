@@ -2,6 +2,7 @@ import { ApiService } from "@/services/apiService";
 import { USER } from "@/types/user";
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
+import UserForm from "./userForm";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -76,32 +77,47 @@ const Users = () => {
 
   const renderUsersTable = () => {
     return (
-      <table className="table-auto">
+        <>
+      <table className="my-[20px] table-auto w-[100%]">
         <thead>
           <tr>
-            <th>Song</th>
-            <th>Artist</th>
-            <th>Year</th>
+            <th className="bg-slate-300 px-4 py-2 text-left text-gray-950">Email</th>
+            <th className="bg-slate-300 px-4 py-2 text-left text-gray-950 border-s">Username</th>
+            <th className="bg-slate-300 px-4 py-2 text-left text-gray-950 border-s">Address</th>
+            <th className="bg-slate-300 px-4 py-2 text-left text-gray-950 border-s">Edit/Delete</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-            <td>Malcolm Lockyer</td>
-            <td>1961</td>
+            <td className="border px-4 py-2">test@email.com</td>
+            <td className="border px-4 py-2">Testww3</td>
+            <td className="border px-4 py-2">
+                <table className="w-[100%]">
+                    <tr className="text-left">
+                        <td className="text-gray-950">Email :</td>
+                        <td className="text-left">Username</td>
+                    </tr>
+                </table>
+            </td>
+            <td className="border px-4 py-2">icon/icon</td>
+          </tr>
+          <tr className="bg-gray-100">
+            <td className="border px-4 py-2">test@email.com</td>
+            <td className="border px-4 py-2">Testww3</td>
+            <td className="border px-4 py-2">1972</td>
+            <td className="border px-4 py-2">icon/icon</td>
           </tr>
           <tr>
-            <td>Witchy Woman</td>
-            <td>The Eagles</td>
-            <td>1972</td>
-          </tr>
-          <tr>
-            <td>Shining Star</td>
-            <td>Earth, Wind, and Fire</td>
-            <td>1975</td>
+            <td className="border px-4 py-2">test@email.com</td>
+            <td className="border px-4 py-2">Testww3</td>
+            <td className="border px-4 py-2">1975</td>
+            <td className="border px-4 py-2">icon/icon</td>
           </tr>
         </tbody>
       </table>
+
+      <UserForm/>
+      </>
     );
   };
 
@@ -109,9 +125,7 @@ const Users = () => {
     return <>Loading...</>;
   }
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
+    <main className={`container mx-auto px-4 ${inter.className}`}>
       {renderUsersTable()}
     </main>
   );
