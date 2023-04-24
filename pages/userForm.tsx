@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { USER } from "@/types/user";
 
-export default function UserForm({ userData }: { userData?: USER }) {
+export default function UserForm({ userData, toggleUserModal }: { userData?: USER, toggleUserModal: Function }) {
   const {
     register,
     handleSubmit,
@@ -29,7 +29,7 @@ export default function UserForm({ userData }: { userData?: USER }) {
             <div className="bg-slate-200 text-black px-6 py-3 flex justify-between">
               <span>Update Details</span>
 
-              <span className="cursor-pointer">
+              <span className="cursor-pointer" onClick={()=>toggleUserModal(false)}>
                 <Image src={closeIcon} alt="Close" />
               </span>
             </div>
