@@ -4,6 +4,7 @@ interface InputInterFace {
   placeholder?: string;
   required?: boolean;
   formRegister: any;
+  message?: string;
 }
 
 export default function InputField({
@@ -12,6 +13,7 @@ export default function InputField({
   placeholder = "",
   required = false,
   formRegister,
+  message,
 }: InputInterFace) {
   return (
     <div className="input-field">
@@ -27,6 +29,7 @@ export default function InputField({
         required={required}
         {...formRegister}
       />
+        <span className="text-[10px] text-red-500 block mt-1">{message}</span>
     </div>
   );
 }

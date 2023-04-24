@@ -40,11 +40,13 @@ export default function UserForm({ userData, toggleUserModal }: { userData?: USE
                     formRegister={register("email")}
                     placeholder="Email"
                     type="email"
+                    message={'Email is required'}
                     required={true}
                   />
                   <InputField
                     formRegister={register("username")}
                     placeholder="Username"
+                    message={'Username is required'}
                     required={true}
                   />
                 </div>
