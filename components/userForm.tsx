@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { USER } from "@/types/user";
 import { useEffect, useState } from "react";
 import Loader from "@/components/loader";
-
+import { ToastTypes, useToast } from "@/context/toast";
 export default function UserForm({
   userData,
   toggleUserModal,
@@ -19,6 +19,7 @@ export default function UserForm({
   editUser: Function;
   setSelectedUser: Function;
 }) {
+  const { callToast } = useToast();
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -42,14 +43,22 @@ export default function UserForm({
     try {
       if (userData?.id) {
         await editUser({ ...userData, ...data });
+        callToast(ToastTypes.SUCCESS, "User updated successfully!");
       } else {
         await createUser(data);
+        callToast(ToastTypes.SUCCESS, "User created successfully!");
       }
       setLoading(false);
       toggleUserModal(false);
-    } catch (e) {
+    } catch (e: any) {
       setLoading(false);
       console.error(e);
+      callToast(
+        ToastTypes.ERROR,
+        e?.error?.response?.data?.title ||
+          e?.error?.response?.data ||
+          "Something went wrong!"
+      );
     }
   };
   if (loading) {
@@ -91,14 +100,20 @@ export default function UserForm({
                       },
                     })}
                     placeholder="Email"
-                    message={"Email is required"}
+                    message={"Please enter a valid email"}
                     identifier="email"
                     errors={errors}
                   />
                   <InputField
-                    formRegister={register("username", { required: true })}
+                    formRegister={register("username", {
+                      required: true,
+                      // pattern: {
+                      //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      //   message: "invalid email address",
+                      // },
+                    })}
                     placeholder="Username"
-                    message={"Username is required"}
+                    message={"Please enter a valid username"}
                     identifier="username"
                     errors={errors}
                   />
@@ -125,6 +140,7 @@ export default function UserForm({
                     identifier="postalCode"
                     errors={errors}
                     message={"Postal Code is required"}
+                    type="number"
                   />
                   <InputField
                     formRegister={register("countryCode", { required: true })}

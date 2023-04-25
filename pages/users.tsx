@@ -7,8 +7,8 @@ import Loader from "../components/loader";
 import Image from "next/image";
 import deleteIcon from "../assets/images/delete.svg";
 import editIcon from "../assets/images/edit.svg";
-import { USERS } from "@/constants";
 import Confirmation from "./confirmation";
+import { ToastTypes, useToast } from "@/context/toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +18,8 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
   const [openUserModal, toggleUserModal] = useState(false);
   const [confirmationModal, toggleConfirmationModal] = useState(false);
+  const { callToast } = useToast();
+
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -77,11 +79,19 @@ const Users = () => {
         let index = allUsers.findIndex((el: USER) => el.id === data.id);
         allUsers.splice(index, 1);
         setUsers(allUsers);
+        callToast(ToastTypes.SUCCESS, "User deleted successfully!");
       } else {
         throw res;
       }
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
+      callToast(
+        ToastTypes.ERROR,
+        e?.error?.response?.data?.title ||
+          e?.error?.response?.data ||
+          "Something went wrong!"
+      );
+
       throw e;
     }
   };
