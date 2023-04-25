@@ -77,7 +77,7 @@ export default function UserForm({
               <span>{userData?.id ? "Update User" : "Create User"}</span>
 
               <span 
-                className={loading ? 'pointer-events-none opacity-50': 'cursor-pointer'}
+                className={loading ? 'pointer-events-none opacity-20': 'cursor-pointer'}
                 onClick={() => {
                   setSelectedUser({});
                   toggleUserModal(false);
@@ -90,6 +90,7 @@ export default function UserForm({
               <form onSubmit={handleSubmit(handleFormSubmit)}>
                 <div className="grid gap-4 mb-4 md:grid-cols-2">
                   <InputField
+                    label="Email"
                     formRegister={register("email", {
                       required: true,
                       pattern: {
@@ -97,12 +98,12 @@ export default function UserForm({
                         message: "invalid email address",
                       },
                     })}
-                    placeholder="Email"
                     message={"Please enter a valid email"}
                     identifier="email"
                     errors={errors}
                   />
                   <InputField
+                    label="Username"
                     formRegister={register("username", {
                       required: true,
                       pattern: {
@@ -110,7 +111,6 @@ export default function UserForm({
                         message: "invalid username",
                       },
                     })}
-                    placeholder="Username"
                     message={"Please enter a valid username"}
                     identifier="username"
                     errors={errors}
@@ -119,30 +119,30 @@ export default function UserForm({
 
                 <div className="grid gap-4 mb-6 md:grid-cols-2">
                   <InputField
+                    label="City"
                     formRegister={register("city", { required: true })}
-                    placeholder="City"
                     identifier="city"
                     errors={errors}
                     message={"City is required"}
                   />
                   <InputField
+                    label="Street"
                     formRegister={register("street", { required: true })}
-                    placeholder="Street"
                     identifier="street"
                     errors={errors}
                     message={"Street is required"}
                   />
                   <InputField
+                    label="Postal Code"
                     formRegister={register("postalCode", { required: true })}
-                    placeholder="Postal Code"
                     identifier="postalCode"
                     errors={errors}
                     message={"Postal Code is required"}
                     type="number"
                   />
                   <InputField
+                    label="Country Code"
                     formRegister={register("countryCode", { required: true })}
-                    placeholder="Country Code"
                     identifier="countryCode"
                     errors={errors}
                     message={"Country Code is required"}
