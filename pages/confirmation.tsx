@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import Loader from "@/components/loader";
+import LoadingDots from "@/components/loadingDots";
 
 interface ConfirmationFace {
   title?: string;
@@ -33,9 +34,6 @@ export default function Confirmation({
       setLoading(false);
     }
   };
-  if (loading) {
-    return <Loader />;
-  }
   return (
     <div
       className="relative z-10"
@@ -51,7 +49,7 @@ export default function Confirmation({
               <span>{title}</span>
 
               <span
-                className="cursor-pointer"
+                className={loading ? 'pointer-events-none opacity-20': 'cursor-pointer'}
                 onClick={() => toggleConfirmationModal(false)}
               >
                 <Image src={closeIcon} alt="Close" />
@@ -60,12 +58,14 @@ export default function Confirmation({
             <div className="bg-white text-center px-4 py-5">
               <p className="mb-4">{description}</p>
 
-              <span
+              <button type="button" disabled={loading}
                 onClick={onConfirmation}
                 className="inline-block bg-red-500 hover:bg-red-700 text-white py-2 px-6 rounded cursor-pointer"
               >
                 Yes
-              </span>
+
+                {loading && <LoadingDots/>}
+              </button>
             </div>
           </div>
         </div>
