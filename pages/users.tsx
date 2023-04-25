@@ -145,7 +145,7 @@ const Users = () => {
                       Street:{" "}
                     </span>
                     <p className="pl-2 md:w-[calc(100%-125px)] w-[calc(100%-100px)]">
-                      {val?.address?.street}
+                      {val?.street}
                     </p>
                   </div>
                   <div className="flex">
@@ -153,7 +153,7 @@ const Users = () => {
                       City Name:{" "}
                     </span>
                     <p className="pl-2 md:w-[calc(100%-125px)] w-[calc(100%-100px)]">
-                      {val?.address?.city}
+                      {val?.city}
                     </p>
                   </div>
                   <div className="flex">
@@ -161,7 +161,7 @@ const Users = () => {
                       Postal Code:{" "}
                     </span>
                     <p className="pl-2 md:w-[calc(100%-125px)] w-[calc(100%-100px)]">
-                      {val?.address?.postalCode}
+                      {val?.postalCode}
                     </p>
                   </div>
                   <div className="flex">
@@ -169,7 +169,7 @@ const Users = () => {
                       Country Code:{" "}
                     </span>
                     <p className="pl-2 md:w-[calc(100%-125px)] w-[calc(100%-100px)]">
-                      {val?.address?.countryCode}
+                      {val?.countryCode}
                     </p>
                   </div>
                 </div>

@@ -30,10 +30,10 @@ export default function UserForm({
     defaultValues: {
       email: userData?.email,
       username: userData?.username,
-      street: userData?.address?.street,
-      postalCode: userData?.address?.postalCode,
-      countryCode: userData?.address?.countryCode,
-      city: userData?.address?.city,
+      street: userData?.street,
+      postalCode: userData?.postalCode,
+      countryCode: userData?.countryCode,
+      city: userData?.city,
     },
   });
 
