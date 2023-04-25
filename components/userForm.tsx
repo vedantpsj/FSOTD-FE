@@ -107,10 +107,10 @@ export default function UserForm({
                   <InputField
                     formRegister={register("username", {
                       required: true,
-                      // pattern: {
-                      //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      //   message: "invalid email address",
-                      // },
+                      pattern: {
+                        value: /^[A-Za-z][A-Za-z0-9]*$/i,
+                        message: "invalid username",
+                      },
                     })}
                     placeholder="Username"
                     message={"Please enter a valid username"}
