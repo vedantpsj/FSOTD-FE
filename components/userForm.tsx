@@ -49,6 +49,7 @@ export default function UserForm({
         callToast(ToastTypes.SUCCESS, "User created successfully!");
       }
       setLoading(false);
+      setSelectedUser({});
       toggleUserModal(false);
     } catch (e: any) {
       setLoading(false);

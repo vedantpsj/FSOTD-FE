@@ -41,7 +41,12 @@ const Users = () => {
   };
   const createUser = async (data: USER) => {
     try {
-      let res: any = await ApiService.createUser(data);
+      let res: any = await ApiService.createUser({
+        ...data,
+        email: data?.email?.toLowerCase(),
+        username: data?.username?.toLowerCase(),
+        postalCode: Number(data?.postalCode),
+      });
       if (res?.success) {
         let allUsers = users;
         allUsers.push(res?.success?.data);
@@ -56,7 +61,12 @@ const Users = () => {
   };
   const editUser = async (data: USER) => {
     try {
-      let res: any = await ApiService.editUser(data);
+      let res: any = await ApiService.editUser({
+        ...data,
+        email: data?.email?.toLowerCase(),
+        username: data?.username?.toLowerCase(),
+        postalCode: Number(data?.postalCode),
+      });
       if (res?.success) {
         let userData = res?.success?.data;
         let allUsers = users;
