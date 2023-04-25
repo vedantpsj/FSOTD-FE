@@ -3,12 +3,7 @@ export const env = {
     baseApiUrl: process.env.SERVER_URL,
   },
   endPoints: {
-    USER: {
-      LIST: "user/list",
-      CREATE: "user/create",
-      EDIT: "user/edit",
-      DELETE: "user/delete",
-    },
+    USER:'User',
   },
   NODE_ENV: process.env.ENVIRONMENT,
 };

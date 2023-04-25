@@ -2,10 +2,14 @@ import axios from "axios";
 import { env } from "../environment/environment";
 import { USER } from "../types/user";
 
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const headers = {
+  "Content-Type": "application/json",
+};
 export class ApiService {
   static async createUser(data: USER) {
     return axios
-      .post(`${env.apiUrls.baseApiUrl}/${env.endPoints.USER.CREATE}`, data)
+      .post(`${API_BASE_URL}/${env.endPoints.USER}`, data, { headers: headers })
       .then(function (success) {
         return { success: success };
       })
@@ -15,10 +19,7 @@ export class ApiService {
   }
   static async editUser(data: USER) {
     return axios
-      .put(
-        `${env.apiUrls.baseApiUrl}/${env.endPoints.USER.EDIT}/${data.id}`,
-        data
-      )
+      .put(`${API_BASE_URL}/${env.endPoints.USER}/${data.id}`, data, { headers: headers })
       .then(function (success) {
         return { success: success };
       })
@@ -28,7 +29,7 @@ export class ApiService {
   }
   static async listUsers() {
     return axios
-      .get(`${env.apiUrls.baseApiUrl}/${env.endPoints.USER.LIST}`)
+      .get(`${API_BASE_URL}/${env.endPoints.USER}`)
       .then(function (success) {
         return { success: success };
       })
@@ -38,9 +39,7 @@ export class ApiService {
   }
   static async deleteUser(data: USER) {
     return axios
-      .delete(
-        `${env.apiUrls.baseApiUrl}/${env.endPoints.USER.DELETE}/${data.id}`
-      )
+      .delete(`${API_BASE_URL}/${env.endPoints.USER}/${data.id}`)
       .then(function (success) {
         return { success: success };
       })

@@ -5,6 +5,8 @@ interface InputInterFace {
   required?: boolean;
   formRegister: any;
   message?: string;
+  errors?: any;
+  identifier?: string;
 }
 
 export default function InputField({
@@ -14,6 +16,8 @@ export default function InputField({
   required = false,
   formRegister,
   message,
+  errors,
+  identifier,
 }: InputInterFace) {
   return (
     <div className="input-field">
@@ -29,7 +33,9 @@ export default function InputField({
         required={required}
         {...formRegister}
       />
+      {message && identifier && errors[identifier] && (
         <span className="text-[10px] text-red-500 block mt-1">{message}</span>
+      )}
     </div>
   );
 }
