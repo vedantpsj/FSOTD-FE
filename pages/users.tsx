@@ -97,7 +97,7 @@ const Users = () => {
   };
   const renderUsersTable = () => {
     if (!users?.length) {
-      return <>No users found</>;
+      return <div className="text-center p-4">No users found</div>;
     }
     return (
       <>

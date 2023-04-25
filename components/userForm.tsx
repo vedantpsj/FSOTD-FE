@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { USER } from "@/types/user";
 import { useEffect, useState } from "react";
-import Loader from "@/components/loader";
+import LoadingDots from "./loadingDots";
 import { ToastTypes, useToast } from "@/context/toast";
 export default function UserForm({
   userData,
@@ -61,9 +61,6 @@ export default function UserForm({
       );
     }
   };
-  if (loading) {
-    return <Loader />;
-  }
   return (
     <div
       className="relative z-10"
@@ -78,8 +75,8 @@ export default function UserForm({
             <div className="bg-slate-200 text-black px-6 py-3 flex justify-between">
               <span>{userData?.id ? "Update User" : "Create User"}</span>
 
-              <span
-                className="cursor-pointer"
+              <span 
+                className={loading ? 'pointer-events-none opacity-50': 'cursor-pointer'}
                 onClick={() => {
                   setSelectedUser({});
                   toggleUserModal(false);
@@ -119,7 +116,7 @@ export default function UserForm({
                   />
                 </div>
 
-                <div className="grid gap-4 mb-6 md:grid-cols-3">
+                <div className="grid gap-4 mb-6 md:grid-cols-2">
                   <InputField
                     formRegister={register("city", { required: true })}
                     placeholder="City"
@@ -152,10 +149,10 @@ export default function UserForm({
                 </div>
                 <div className="text-right">
                   <button
-                    type="submit"
-                    className="text-white bg-slate-600 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    Submit
+                    type="submit" 
+                    className="text-white disabled:text-opacity-80 disabled:bg-slate-400 bg-slate-600 inline-flex items-center hover:bg-slate-800 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" disabled={loading}>
+                    Submit 
+                    {loading && <LoadingDots/>}
                   </button>
                 </div>
               </form>
